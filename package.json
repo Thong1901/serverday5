@@ -1,0 +1,20 @@
+{
+  "name": "serverday5",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --watch src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.13.1",
+  "dependencies": {
+    "@thong190103/expressplus": "^1.0.18",
+    "express": "^5.1.0",
+    "pg": "^8.16.3"
+  }
+}
