@@ -3,12 +3,24 @@ import { ExpressPlus } from '@thong190103/expressplus';
 
 const app = new ExpressPlus();
 
-/*CREATE TABLE home (
-    id SERIAL PRIMARY KEY,
-    email VARCHAR(255) NOT NULL,
-    content TEXT
-);
-*/
+// CORS Middleware to allow requests from any origin
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+    // Handle preflight requests
+    if (req.method === 'OPTIONS') {
+        res.writeHead(204);
+        res.end();
+        return;
+    }
+
+    next();
+});
+
+// All your existing route handlers go here
+// ...
 
 app.get('/api/contact', async (req, res) => {
     try {
@@ -23,6 +35,7 @@ app.get('/api/contact', async (req, res) => {
         res.status(500).json({ error: "Internal Server Error" });
     }
 });
+
 app.post("/api/contact", async (req, res) => {
     try {
         const { email, content } = req.body || {};
@@ -153,6 +166,7 @@ app.patch('/api/contact/:id', async (req, res) => {
         client.release();
     }
 });
+
 
 app.listen(3001, () => {
     console.log('🚀 Server is running on port 3001');
