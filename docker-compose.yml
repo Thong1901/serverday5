@@ -1,0 +1,11 @@
+version: "3.9"
+
+services:
+  app:
+    build: .
+    container_name: node_app
+    restart: always
+    ports:
+      - "3000:3001"
+    environment:
+      DATABASE_URL: "postgresql://neondb_owner:npg_vAbJOjhu0N2E@ep-calm-union-a18gafgs-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
